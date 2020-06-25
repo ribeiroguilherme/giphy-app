@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <tag-form @add:tag="addTag" />
-    <tag-list :tags="tags"/>
+    <tag-list :tags="tags" @delete:tag="deleteTag" @edit:tag="editTag" />
   </div>
 </template>
 
@@ -12,6 +12,11 @@ import Tag from '@/components/Tag.vue';
 import TagList from '@/components/TagList.vue';
 import TagForm from '@/components/TagForm.vue';
 
+type Tag = {
+  id: number;
+  label: string;
+}
+
 @Component({
   components: {
     Tag,
@@ -20,12 +25,23 @@ import TagForm from '@/components/TagForm.vue';
   },
 })
 export default class App extends Vue {
-  tags = [
-    { id: 1, label: 'Action' },
-    { id: 2, label: 'Fun' },
-  ];
+  tags: Tag[] = [];
 
-  addTag(tag: any) {
+  mounted() {
+    this.getUsers();
+  }
+
+  async getUsers() {
+    try {
+      const response = await fetch('https://jsonplaceholder.typicode.com/users');
+      const data = await response.json();
+      this.tags = data.map((user: any) => ({ id: user.id, label: user.username }));
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  addTag(tag: Tag) {
     const lastId = this.tags.length > 0
       ? this.tags[this.tags.length - 1].id
       : 0;
@@ -33,6 +49,14 @@ export default class App extends Vue {
     const newTag = { label: tag.label, id };
 
     this.tags = [...this.tags, newTag];
+  }
+
+  deleteTag(id: number) {
+    this.tags = this.tags.filter((tag) => tag.id !== id);
+  }
+
+  editTag(id: number, updatedTag: Tag) {
+    this.tags = this.tags.map((tag) => (tag.id === id ? updatedTag : tag));
   }
 }
 </script>
