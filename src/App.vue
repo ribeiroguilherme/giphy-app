@@ -1,16 +1,15 @@
 <template>
   <div id="app">
-    <tag-form @add:tag="addTag" />
-    <tag-list :tags="tags" @delete:tag="deleteTag" @edit:tag="editTag" />
+    <category-list />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Provide } from 'vue-property-decorator';
 
-import Tag from '@/components/Tag.vue';
-import TagList from '@/components/TagList.vue';
-import TagForm from '@/components/TagForm.vue';
+import GiphyService, { IGiphyService } from '@/services/GiphyService';
+
+import CategoryList from '@/components/CategoryList.vue';
 
 type Tag = {
   id: number;
@@ -19,12 +18,12 @@ type Tag = {
 
 @Component({
   components: {
-    Tag,
-    TagList,
-    TagForm,
+    CategoryList,
   },
 })
 export default class App extends Vue {
+  @Provide() giphyService: IGiphyService = new GiphyService(process.env.VUE_APP_GIPHY_KEY);
+
   tags: Tag[] = [];
 
   mounted() {
