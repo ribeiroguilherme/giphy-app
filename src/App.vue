@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <category-list />
+    <router-view></router-view>
   </div>
 </template>
 
@@ -25,5 +25,6 @@ body {
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', sans-serif;
   max-width: 800px;
   background-color: black;
+  color: white;
 }
 </style>
