@@ -3,7 +3,10 @@ interface IGIFObject {
   title: string;
   images: {
       original: {
-          url: string;
+        url: string;
+      };
+      fixed_width: {
+        url: string;
       };
   };
 }
