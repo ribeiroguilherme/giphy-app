@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import {
-  Component, Vue, Inject, Prop,
+  Component, Vue, Inject, Prop, Watch,
 } from 'vue-property-decorator';
 import ICategory from '@/models/ICategory';
 import { IGiphyService } from '@/services/GiphyService';
@@ -26,24 +26,23 @@ import CategoryItem from '@/components/CategoryItem.vue';
 export default class CategoryMenuItem extends Vue {
   @Inject() readonly giphyService!: IGiphyService;
 
-  @Prop() readonly category!: string | undefined;
+  @Prop() readonly category?: string;
 
   categories: ICategory[] = [];
 
   created() {
-    console.log(this.category);
     this.requestCategories();
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  beforeRouteUpdate(to: any, from: any, next: any) {
-    console.log(to, from, next);
+  @Watch('category')
+  onCategoryChanges(newCategory: string, oldCategory: string) {
+    if (newCategory === oldCategory) return;
+    this.requestCategories();
   }
 
   async requestCategories() {
-    const categories = await this.giphyService.fetchCategories();
+    const categories = await this.giphyService.fetchCategories(this.category);
     this.categories = categories;
-    console.log(categories);
   }
 }
 </script>

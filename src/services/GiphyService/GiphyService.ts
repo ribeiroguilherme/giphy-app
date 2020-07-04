@@ -5,7 +5,7 @@ interface ICategoryApiResponse {
 }
 
 export interface IGiphyService {
-  fetchCategories(): Promise<ICategory[]>;
+  fetchCategories(subCategory?: string): Promise<ICategory[]>;
 }
 
 class GiphyService implements IGiphyService {
@@ -15,8 +15,8 @@ class GiphyService implements IGiphyService {
     this.apiKey = apiKey;
   }
 
-  public async fetchCategories() {
-    const response = await fetch(`https://api.giphy.com/v1/gifs/categories?api_key=${this.apiKey}`);
+  public async fetchCategories(subCategory?: string) {
+    const response = await fetch(`https://api.giphy.com/v1/gifs/categories${subCategory ? `/${subCategory}` : ''}?api_key=${this.apiKey}`);
 
     if (!response.ok) {
       throw Error('GiphyService#fetchCategories(): Something went wrong');

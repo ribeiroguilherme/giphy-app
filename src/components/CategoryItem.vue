@@ -1,8 +1,8 @@
 <template>
-  <a class="category-item">
+  <router-link :to="{ path: `/categories/${name}`}" class="category-item">
     <img class="image" :src="imageUrl" :alt="name"/>
     <div class="name">{{name}}</div>
-  </a>
+  </router-link>
 </template>
 
 <script lang="ts">
