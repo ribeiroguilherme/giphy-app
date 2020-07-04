@@ -1,17 +1,17 @@
 <template>
-  <div id="app">
+  <page-layout>
     <router-view></router-view>
-  </div>
+  </page-layout>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Provide } from 'vue-property-decorator';
 import GiphyService, { IGiphyService } from '@/services/GiphyService';
-import CategoryList from '@/components/CategoryList.vue';
+import PageLayout from '@/pages/PageLayout.vue';
 
 @Component({
   components: {
-    CategoryList,
+    PageLayout,
   },
 })
 export default class App extends Vue {
@@ -24,7 +24,5 @@ body {
   margin: 0px auto;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', sans-serif;
   max-width: 800px;
-  background-color: black;
-  color: white;
 }
 </style>

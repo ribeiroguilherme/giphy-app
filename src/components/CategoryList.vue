@@ -16,10 +16,11 @@ import {
 import ICategory from '@/models/ICategory';
 import { IGiphyService } from '@/services/GiphyService';
 import CategoryItem from '@/components/CategoryItem.vue';
+import Card from '@/components/Card.vue';
 
 @Component({
-  name: 'category-list',
   components: {
+    Card,
     CategoryItem,
   },
 })
@@ -51,5 +52,6 @@ export default class CategoryMenuItem extends Vue {
   .category-list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
   }
 </style>

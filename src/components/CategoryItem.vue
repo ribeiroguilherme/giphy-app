@@ -1,7 +1,9 @@
 <template>
   <router-link :to="{ path: `/categories/${name}`}" class="category-item">
-    <img class="image" :src="imageUrl" :alt="name"/>
-    <div class="name">{{name}}</div>
+    <card>
+      <img class="image" :src="imageUrl" :alt="name"/>
+      <div class="name">{{name}}</div>
+    </card>
   </router-link>
 </template>
 
@@ -9,8 +11,9 @@
 
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
+import Card from '@/components/Card.vue';
 
-@Component({ name: 'category-item' })
+@Component({ components: { Card } })
 export default class CategoryItem extends Vue {
   @Prop({ required: true, type: String }) readonly name!: string;
 
@@ -29,7 +32,7 @@ export default class CategoryItem extends Vue {
     cursor: pointer;
   }
 
-  .category-item:nth-child(3) {
+  .category-item:nth-child(3n) {
     margin-right: 0;
   }
 
@@ -48,6 +51,7 @@ export default class CategoryItem extends Vue {
   }
 
   img {
+    display: block;
     width: 248px;
     height: 134px;
     object-fit: cover;
