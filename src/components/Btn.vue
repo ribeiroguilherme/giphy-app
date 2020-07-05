@@ -1,6 +1,9 @@
-<template functional>
-  <button class="button">
-    <slot></slot>
+<template>
+  <button
+    class="btn"
+    @click="handleClick"
+  >
+    <slot />
   </button>
 </template>
 
@@ -9,12 +12,16 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 
 @Component
-export default class Button extends Vue {}
+export default class Btn extends Vue {
+  handleClick(event: Event) {
+    this.$emit('click', event);
+  }
+}
 
 </script>
 
 <style scoped>
-  .button {
+  .btn {
     position: relative;
     display: inline-block;
     font-weight: 400;
@@ -32,7 +39,7 @@ export default class Button extends Vue {}
     border-color: #1890ff;
     box-shadow: 0 2px 0 rgba(0,0,0,.045);
   }
-  .button:hover {
+  .btn:hover {
     color: #fff;
     background: #40a9ff;
     border-color: #40a9ff;

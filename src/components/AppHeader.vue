@@ -1,17 +1,20 @@
 <template>
   <header class="header">
     <h1 class="logo">Giphy Clone</h1>
-    <app-button class="login">Login</app-button>
+    <login-button v-if="!isUserAuthenticated" class="login">Login</login-button>
   </header>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
-import AppButton from '@/components/AppButton.vue';
+import { LoginButton } from '@/components';
+import { Getter } from 'vuex-class';
 
-@Component({ components: { AppButton } })
-export default class AppHeader extends Vue {}
+@Component({ components: { LoginButton } })
+export default class AppHeader extends Vue {
+  @Getter isUserAuthenticated!: boolean;
+}
 
 </script>
 
