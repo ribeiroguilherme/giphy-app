@@ -1,6 +1,7 @@
 <template>
   <button
     class="btn"
+    :disabled="disabled"
     @click="handleClick"
   >
     <slot />
@@ -10,9 +11,12 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import { Prop } from 'vue-property-decorator';
 
 @Component
 export default class Btn extends Vue {
+  @Prop({ type: Boolean, default: false }) disabled!: boolean;
+
   handleClick(event: Event) {
     this.$emit('click', event);
   }
@@ -43,5 +47,9 @@ export default class Btn extends Vue {
     color: #fff;
     background: #40a9ff;
     border-color: #40a9ff;
+  }
+  .btn[disabled] {
+    background-color: brown;
+    cursor: wait;
   }
 </style>

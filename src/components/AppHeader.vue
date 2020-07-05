@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <h1 class="logo">Giphy Clone</h1>
-    <login-button v-if="!isUserAuthenticated" class="login">Login</login-button>
+    <login-button v-if="!isUserLoggedIn" class="login">Login</login-button>
   </header>
 </template>
 
@@ -13,7 +13,7 @@ import { Getter } from 'vuex-class';
 
 @Component({ components: { LoginButton } })
 export default class AppHeader extends Vue {
-  @Getter isUserAuthenticated!: boolean;
+  @Getter isUserLoggedIn!: boolean;
 }
 
 </script>

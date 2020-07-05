@@ -1,13 +1,18 @@
 <template>
-  <btn @click="handleClick">Login</btn>
+  <btn
+    :disabled="isUserLoggingIn"
+    @click="handleClick"
+  >
+    Login
+  </btn>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import { Btn } from '@/components';
-import { Mutation } from 'vuex-class';
+import { Action, Getter } from 'vuex-class';
 import Component from 'vue-class-component';
-import { IUser } from '../store/types';
+import { ILoginForm } from '@/models/ILogin';
 
 @Component({
   components: {
@@ -15,12 +20,16 @@ import { IUser } from '../store/types';
   },
 })
 export default class LoginButton extends Vue {
-  @Mutation setAuthenticatedUser: any;
+  @Action loginAsync: any;
 
-  // eslint-disable-next-line class-methods-use-this
+  @Getter isUserLoggingIn!: boolean;
+
   handleClick(event: Event) {
-    const user: IUser = { name: 'Guilherme', isAuthenticated: true };
-    this.setAuthenticatedUser(user);
+    const credentials: ILoginForm = {
+      email: 'guilhermemrr@gmail.com',
+      password: 'learning-vue',
+    };
+    this.loginAsync(credentials);
   }
 }
 
