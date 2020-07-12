@@ -1,4 +1,5 @@
 export interface IRootState {
+  darkModeEnabled: boolean;
   gifs: IGifsState;
   account: IAccountState;
 }
