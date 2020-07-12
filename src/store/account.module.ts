@@ -1,11 +1,13 @@
 /* eslint-disable no-shadow */
-import { GetterTree, MutationTree, ActionTree } from 'vuex';
-import { IState, IUser } from '@/store/types';
+import {
+  GetterTree, MutationTree, ActionTree, Module,
+} from 'vuex';
+import { IRootState, IAccountState, IUser } from '@/store/types';
 import { ILoginForm } from '@/models/ILogin';
 
-type UserGetter = GetterTree<IState, any>;
+type UserGetter = GetterTree<IAccountState, IRootState>;
 
-export const state: IState = {
+export const state: IAccountState = {
   status: { loggingIn: false, loggedIn: false },
   user: null,
 };
@@ -15,7 +17,7 @@ export const getters: UserGetter = {
   isUserLoggingIn: (state) => state.status.loggingIn,
 };
 
-export const mutations: MutationTree<IState> = {
+export const mutations: MutationTree<IAccountState> = {
   loginRequest(state) {
     state.status.loggingIn = true;
   },
@@ -33,19 +35,27 @@ export const mutations: MutationTree<IState> = {
   },
 };
 
-export const actions: ActionTree<IState, any> = {
-  loginAsync(context, credentials: ILoginForm) {
+export const actions: ActionTree<IAccountState, IRootState> = {
+  loginAsync({ commit, rootState }, credentials: ILoginForm) {
     console.log('Authenticating with credentials', credentials);
 
-    context.commit('loginRequest');
+    commit('loginRequest');
 
     return new Promise((resolve) => {
       setTimeout(() => {
         const user: IUser = { name: 'Guilherme', email: 'guilhermemrr@gmail.com' };
-        context.commit('loginSuccess', user);
+        commit('loginSuccess', user);
         console.log('User authenticated', user);
         resolve();
-      }, 5000);
+      }, 3000);
     });
   },
+};
+
+export const account: Module<IAccountState, IRootState> = {
+  state,
+  getters,
+  mutations,
+  actions,
+  namespaced: true,
 };

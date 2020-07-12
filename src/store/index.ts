@@ -1,14 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {
-  state, getters, mutations, actions,
-} from '@/store/account';
+import { account } from '@/store/account.module';
+import { gifs } from '@/store/gifs.module';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state,
-  getters,
-  mutations,
-  actions,
+  modules: {
+    account,
+    gifs,
+  },
 });

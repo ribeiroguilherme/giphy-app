@@ -1,17 +1,14 @@
 <template>
-  <btn
-    :disabled="isUserLoggingIn"
-    @click="handleClick"
-  >
-    Logout
-  </btn>
+  <btn @click="handleClick">Logout</btn>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import { Btn } from '@/components';
-import { Mutation } from 'vuex-class';
+import { Mutation, namespace } from 'vuex-class';
 import Component from 'vue-class-component';
+
+const AccountMutation = namespace('account', Mutation);
 
 @Component({
   components: {
@@ -19,7 +16,7 @@ import Component from 'vue-class-component';
   },
 })
 export default class LoginButton extends Vue {
-  @Mutation logout: any;
+  @AccountMutation logout: any;
 
   handleClick(event: Event) {
     this.logout();

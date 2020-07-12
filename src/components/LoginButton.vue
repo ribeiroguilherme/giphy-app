@@ -11,9 +11,12 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Btn } from '@/components';
-import { Action, Getter } from 'vuex-class';
+import { Action, Getter, namespace } from 'vuex-class';
 import Component from 'vue-class-component';
 import { ILoginForm } from '@/models/ILogin';
+
+const AccountAction = namespace('account', Action);
+const AccountGetter = namespace('account', Getter);
 
 @Component({
   components: {
@@ -21,9 +24,9 @@ import { ILoginForm } from '@/models/ILogin';
   },
 })
 export default class LoginButton extends Vue {
-  @Action loginAsync: any;
+  @AccountAction loginAsync: any;
 
-  @Getter isUserLoggingIn!: boolean;
+  @AccountGetter isUserLoggingIn!: boolean;
 
   handleClick(event: Event) {
     const credentials: ILoginForm = {

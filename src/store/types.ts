@@ -1,4 +1,11 @@
-export interface IState {
+export interface IRootState {
+  gifs: IGifsState;
+  account: IAccountState;
+}
+export interface IGifsState {
+  starredGifs: string[];
+}
+export interface IAccountState {
   user: IUser | null;
   status: IAuthenticationStatus;
 }
