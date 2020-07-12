@@ -3,7 +3,8 @@
     :disabled="isUserLoggingIn"
     @click="handleClick"
   >
-    Login
+    <i v-show="isUserLoggingIn" class="fa fa-spinner fa-pulse"></i>
+    {{isUserLoggingIn ? 'Logging in' : 'Login' }}
   </btn>
 </template>
 

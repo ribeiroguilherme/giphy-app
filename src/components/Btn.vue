@@ -49,7 +49,8 @@ export default class Btn extends Vue {
     border-color: #40a9ff;
   }
   .btn[disabled] {
-    background-color: brown;
+    opacity: .35;
     cursor: wait;
+    pointer-events: none;
   }
 </style>

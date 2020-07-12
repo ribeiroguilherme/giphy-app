@@ -45,7 +45,7 @@ export const actions: ActionTree<IState, any> = {
         context.commit('loginSuccess', user);
         console.log('User authenticated', user);
         resolve();
-      }, 2000);
+      }, 5000);
     });
   },
 };
