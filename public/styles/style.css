@@ -1,0 +1,13 @@
+body {
+    --duration: 0.5s;
+    --timing: ease;
+    
+    margin: 0px auto;
+    max-width: 800px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', sans-serif;
+    background-color: var(--background-color);
+
+    transition:
+        color var(--duration) var(--timing),
+        background-color var(--duration) var(--timing);
+}

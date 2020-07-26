@@ -20,9 +20,5 @@ export default class App extends Vue {
 </script>
 
 <style>
-body {
-  margin: 0px auto;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', sans-serif;
-  max-width: 800px;
-}
+
 </style>
