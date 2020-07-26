@@ -37,5 +37,6 @@ export default class AppHeader extends Vue {
 
   .logo {
     flex-grow: 1;
+    color: var(--text-color)
   }
 </style>

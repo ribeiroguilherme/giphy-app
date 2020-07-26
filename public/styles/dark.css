@@ -1,5 +1,4 @@
-/* dark.css: 👉 light-on-dark */
-html[data-theme='dark'] {{
-    --color: rgb(250, 250, 250);
+html[data-theme='dark'] {
+    --text-color: rgb(250, 250, 250);
     --background-color: rgb(5, 5, 5);
 }

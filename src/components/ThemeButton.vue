@@ -1,6 +1,8 @@
 <template>
   <btn class="theme-button" @click="handleClick">
-    {{ darkModeEnabled ? 'Tweak to light' : 'Tweak to dark'}}
+    Tweak to
+    <img v-if="darkModeEnabled" height="15" src="@/assets/images/sun.png" alt="light"/>
+    <img v-if="!darkModeEnabled" height="15" src="@/assets/images/moon.png" alt="dark"/>
   </btn>
 </template>
 
@@ -59,5 +61,9 @@ export default class ThemeButton extends Vue {
 <style scoped>
   .theme-button {
     margin-right: 8px;
+  }
+
+  .theme-button > img {
+    vertical-align: middle;
   }
 </style>
