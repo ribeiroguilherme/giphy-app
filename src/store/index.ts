@@ -7,14 +7,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    darkModeEnabled: false,
     account: initalAccoutnState,
     gifs: initialGifsState,
-  },
-  mutations: {
-    toggleTheme(state) {
-      state.darkModeEnabled = !state.darkModeEnabled;
-    },
   },
   modules: {
     account,
