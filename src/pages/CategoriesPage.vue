@@ -6,7 +6,7 @@
 
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
-import { CategoryList } from '@/components';
+import CategoryList from '@/components/CategoryList.vue';
 
 @Component({
   components: {

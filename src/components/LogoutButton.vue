@@ -4,9 +4,9 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Btn } from '@/components';
 import { Mutation, namespace } from 'vuex-class';
 import Component from 'vue-class-component';
+import Btn from '@/components/Btn.vue';
 
 const AccountMutation = namespace('account', Mutation);
 

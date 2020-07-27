@@ -14,9 +14,11 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
-import { LoginButton, LogoutButton, ThemeButton } from '@/components';
 import { State, Getter, namespace } from 'vuex-class';
-import { IGifsState } from '../store/types';
+import LoginButton from '@/components/LoginButton.vue';
+import LogoutButton from '@/components/LogoutButton.vue';
+import ThemeButton from '@/components/ThemeButton.vue';
+import { IGifsState } from '@/store/types';
 
 const AccountGetter = namespace('account', Getter);
 
