@@ -1,10 +1,11 @@
 <template>
   <div class="category-list">
     <category-item
-      v-for="category in categories"
-      :key="category.name"
-      :name="category.name"
-      :imageUrl="category.gif.images.fixed_width.url"
+      v-for="cat in categories"
+      :key="cat.name"
+      :name="cat.name"
+      :imageUrl="cat.gif.images.fixed_width.url"
+      :isSubcategory="category !== undefined"
     />
   </div>
 </template>

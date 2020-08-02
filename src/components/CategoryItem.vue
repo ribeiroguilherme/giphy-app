@@ -1,5 +1,8 @@
 <template>
-  <router-link :to="{ path: `/categories/${name}`}" class="category-item">
+  <router-link
+    :to="{ path: isSubcategory ? `/gifs/${name}` : `/categories/${name}`}"
+    class="category-item"
+  >
     <card>
       <img class="image" :src="imageUrl" :alt="name"/>
       <div class="name">{{name}}</div>
@@ -18,6 +21,8 @@ export default class CategoryItem extends Vue {
   @Prop({ required: true, type: String }) readonly name!: string;
 
   @Prop({ required: true, type: String }) readonly imageUrl!: string;
+
+  @Prop({ required: true, type: Boolean }) readonly isSubcategory!: boolean;
 }
 
 </script>
